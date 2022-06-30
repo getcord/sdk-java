@@ -1,5 +1,10 @@
 package com.cord.types;
-
+/**
+ * Variables used for the information needed in the
+ * authentication token data
+ *
+ * The required variables are "app_id", "user_id" and "organization_id".
+ * **/
 public class ClientAuthTokenData {
     public final String app_id;
     public final String user_id;

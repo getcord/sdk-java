@@ -1,5 +1,10 @@
 package com.cord.types;
 
+/**
+ * Variables used to describe a platform user
+ *
+ * The only required variable is "email".
+ * **/
 public class PlatformUserVariables {
     private final String email;
     private final String name;

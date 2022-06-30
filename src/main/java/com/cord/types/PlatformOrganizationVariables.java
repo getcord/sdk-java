@@ -2,6 +2,11 @@ package com.cord.types;
 
 import java.util.List;
 
+/**
+ * Variables used to describe a platform organization
+ *
+ * The only required variable is "name".
+ * **/
 public class PlatformOrganizationVariables {
     private final String name;
     private final Status status;

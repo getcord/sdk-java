@@ -1,17 +1,100 @@
 plugins {
     id 'java-library'
     id 'maven-publish'
+    id 'signing'
 }
-
-group 'cord.server'
-version '1.0-SNAPSHOT'
 
 repositories {
     mavenCentral()
 }
 
+task javadocJar(type: Jar) {
+    archiveClassifier = 'javadoc'
+    from javadoc
+}
+
+task sourcesJar(type: Jar) {
+    archiveClassifier = 'sources'
+    from sourceSets.main.allSource
+}
+
 dependencies {
-    implementation 'io.jsonwebtoken:jjwt:0.9.1'
+    implementation "io.jsonwebtoken:jjwt:0.9.1"
     implementation "jakarta.xml.bind:jakarta.xml.bind-api:2.3.2"
     implementation "org.glassfish.jaxb:jaxb-runtime:2.3.2"
+
+    constraints {
+        implementation('com.fasterxml.jackson.core:jackson-databind:2.13.3') {
+            because 'previous versions have a bug impacting this application'
+        }
+    }
+}
+
+afterEvaluate { project ->
+    publishing {
+        publications {
+            mavenJava(MavenPublication) {
+                artifactId = 'sdk-java'
+                from components.java
+
+                pom {
+                    name = 'cord-sdk-java'
+                    packaging = 'jar'
+                    description = 'The Cord SDK for Java'
+                    url = 'https://github.com/getcord/sdk-java'
+
+                    scm {
+                        url = 'https://github.com/getcord'
+                        connection = 'scm:git:git://github.com/getcord/sdk-java.git'
+                        developerConnection = 'scm:git:ssh://github.com/getcord/sdk-java.git'
+                    }
+
+                    licenses {
+                        license {
+                            name = 'MIT License'
+                            url = 'https://github.com/getcord/sdk-java/blob/master/LICENSE'
+                        }
+                    }
+
+                    artifact sourcesJar {
+                        archiveClassifier = 'sources'
+                        from sourceSets.main.allSource
+                    }
+
+                    artifact javadocJar {
+                        archiveClassifier = 'javadoc'
+                        from javadoc
+                    }
+
+                    group = "com.cord"
+                    archivesBaseName = "sdk-java"
+                    version = "0.0.4"
+
+                    developers {
+                        developer {
+                            id = 'nickfil22'
+                            name = 'Nick Filippakis'
+                            email = 'nickfil@cord.com'
+                        }
+                    }
+                }
+            }
+        }
+        repositories {
+            maven {
+                //https://github.com/lottie-react-native/lottie-react-native/pull/798/files
+                url = 'https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/'
+
+                credentials {
+                    username = ossrhUsername
+                    password = ossrhPassword
+                }
+            }
+        }
+    }
+
+    signing {
+        required { gradle.taskGraph.hasTask("uploadArchives") }
+        sign publishing.publications.mavenJava
+    }
 }
