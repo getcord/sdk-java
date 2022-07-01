@@ -36,7 +36,7 @@ afterEvaluate { project ->
     publishing {
         publications {
             mavenJava(MavenPublication) {
-                artifactId = 'sdk-java'
+                artifactId = 'server'
                 from components.java
 
                 pom {
@@ -70,7 +70,7 @@ afterEvaluate { project ->
 
                     group = "com.cord"
                     archivesBaseName = "server"
-                    version = "0.0.7"
+                    version = "0.0.8"
 
                     developers {
                         developer {
