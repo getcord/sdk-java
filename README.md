@@ -9,7 +9,7 @@ server-side portions of Cord.
 
 Include the package in your `build.gradle`
 
-`implementation "com.cord:sdk-java:0.0.+"`
+`implementation "com.cord:server:0.0.+"`
 
 It is in the `mavenCentral()` repository.
 
