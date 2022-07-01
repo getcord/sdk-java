@@ -19,13 +19,15 @@ task sourcesJar(type: Jar) {
 }
 
 dependencies {
-    implementation "io.jsonwebtoken:jjwt:0.9.1"
+    compileOnly "io.jsonwebtoken:jjwt-api:0.11.5"
+    runtimeOnly "io.jsonwebtoken:jjwt-impl:0.11.5"
+    implementation 'io.jsonwebtoken:jjwt-jackson:0.11.5'
     implementation "jakarta.xml.bind:jakarta.xml.bind-api:2.3.2"
     implementation "org.glassfish.jaxb:jaxb-runtime:2.3.2"
 
     constraints {
         implementation('com.fasterxml.jackson.core:jackson-databind:2.13.3') {
-            because 'previous versions have a bug impacting this application'
+            because 'previous versions have critical vulnerabilities'
         }
     }
 }
@@ -38,13 +40,13 @@ afterEvaluate { project ->
                 from components.java
 
                 pom {
-                    name = 'cord-sdk-java'
+                    name = 'server'
                     packaging = 'jar'
                     description = 'The Cord SDK for Java'
                     url = 'https://github.com/getcord/sdk-java'
 
                     scm {
-                        url = 'https://github.com/getcord'
+                        url = 'https://github.com/getcord/sdk-java'
                         connection = 'scm:git:git://github.com/getcord/sdk-java.git'
                         developerConnection = 'scm:git:ssh://github.com/getcord/sdk-java.git'
                     }
@@ -67,8 +69,8 @@ afterEvaluate { project ->
                     }
 
                     group = "com.cord"
-                    archivesBaseName = "sdk-java"
-                    version = "0.0.4"
+                    archivesBaseName = "server"
+                    version = "0.0.7"
 
                     developers {
                         developer {
@@ -82,7 +84,6 @@ afterEvaluate { project ->
         }
         repositories {
             maven {
-                //https://github.com/lottie-react-native/lottie-react-native/pull/798/files
                 url = 'https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/'
 
                 credentials {

@@ -1,5 +1,6 @@
-package com.cord.types;
+package com.cord.server;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -18,13 +19,13 @@ public class PlatformOrganizationVariables {
         this.members = builder.members;
     }
 
-    public String getName() {
+    private String getName() {
         return name;
     }
-    public Status getStatus() {
+    private Status getStatus() {
         return status;
     }
-    public List<String> getMembers() {
+    private List<String> getMembers() {
         return members;
     }
 
@@ -42,7 +43,7 @@ public class PlatformOrganizationVariables {
             return this;
         }
         public PlatformOrganizationVariablesBuilder members(List<String> members) {
-            this.members = members;
+            this.members = Collections.unmodifiableList(members);
             return this;
         }
 

@@ -1,4 +1,4 @@
-package com.cord.types;
+package com.cord.server;
 /**
  * Marks the status of a user or an organization.
  * Mainly used to "soft" delete entities.
