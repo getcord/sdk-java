@@ -10,33 +10,40 @@ import java.util.List;
  * **/
 public class PlatformOrganizationVariables {
     private final String name;
+    private final String id;
     private final Status status;
     private final List<String> members;
 
     private PlatformOrganizationVariables(PlatformOrganizationVariablesBuilder builder) {
         this.name = builder.name;
+        this.id = builder.id;
         this.status = builder.status;
         this.members = builder.members;
     }
-
-    private String getName() {
+public String getId() { return id; }
+    public String getName() {
         return name;
     }
-    private Status getStatus() {
+    public Status getStatus() {
         return status;
     }
-    private List<String> getMembers() {
+    public List<String> getMembers() {
         return members;
     }
 
 
     public static class PlatformOrganizationVariablesBuilder {
         private final String name;
+        private String id;
         private Status status;
         private List<String> members;
 
         public PlatformOrganizationVariablesBuilder(String name) {
             this.name = name;
+        }
+        public PlatformOrganizationVariablesBuilder id(String id) {
+            this.id = id;
+            return this;
         }
         public PlatformOrganizationVariablesBuilder status(Status status) {
             this.status = status;

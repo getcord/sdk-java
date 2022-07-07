@@ -70,7 +70,7 @@ afterEvaluate { project ->
 
                     group = "com.cord"
                     archivesBaseName = "server"
-                    version = "0.0.8"
+                    version = "0.0.10"
 
                     developers {
                         developer {
