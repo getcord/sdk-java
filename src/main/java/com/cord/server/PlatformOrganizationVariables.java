@@ -1,5 +1,6 @@
 package com.cord.server;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -7,7 +8,7 @@ import java.util.List;
  * Variables used to describe a platform organization
  *
  * The only required variable is "name".
- * **/
+ **/
 public class PlatformOrganizationVariables {
     private final String name;
     private final String id;
@@ -20,17 +21,22 @@ public class PlatformOrganizationVariables {
         this.status = builder.status;
         this.members = builder.members;
     }
-public String getId() { return id; }
+
+    public String getId() {
+        return id;
+    }
+
     public String getName() {
         return name;
     }
+
     public Status getStatus() {
         return status;
     }
+
     public List<String> getMembers() {
         return members;
     }
-
 
     public static class PlatformOrganizationVariablesBuilder {
         private final String name;
@@ -41,16 +47,19 @@ public String getId() { return id; }
         public PlatformOrganizationVariablesBuilder(String name) {
             this.name = name;
         }
+
         public PlatformOrganizationVariablesBuilder id(String id) {
             this.id = id;
             return this;
         }
+
         public PlatformOrganizationVariablesBuilder status(Status status) {
             this.status = status;
             return this;
         }
+
         public PlatformOrganizationVariablesBuilder members(List<String> members) {
-            this.members = Collections.unmodifiableList(members);
+            this.members = Collections.unmodifiableList(new ArrayList<>(members));
             return this;
         }
 

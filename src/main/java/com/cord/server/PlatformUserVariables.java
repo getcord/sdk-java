@@ -6,21 +6,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * Variables used to describe a platform user
  *
  * The only required variable is "email".
- * **/
+ **/
 public class PlatformUserVariables {
-    @JsonProperty("email")
     private final String email;
-    @JsonProperty("id")
     private final String id;
-    @JsonProperty("name")
     private final String name;
-    @JsonProperty("profile_picture_url")
     private final String profilePictureUrl;
-    @JsonProperty("status")
     private final Status status;
-    @JsonProperty("first_name")
     private final String firstName;
-    @JsonProperty("last_name")
     private final String lastName;
 
     private PlatformUserVariables(PlatformUserVariablesBuilder builder) {
@@ -33,22 +26,37 @@ public class PlatformUserVariables {
         this.lastName = builder.lastName;
     }
 
+    @JsonProperty("email")
     public String getEmail() {
         return email;
     }
-    public String getId() { return id; }
+
+    @JsonProperty("id")
+    public String getId() {
+        return id;
+    }
+
+    @JsonProperty("name")
     public String getName() {
         return name;
     }
+
+    @JsonProperty("profile_picture_url")
     public String getProfilePictureUrl() {
         return profilePictureUrl;
     }
+
+    @JsonProperty("status")
     public Status getStatus() {
         return status;
     }
+
+    @JsonProperty("first_name")
     public String getFirstName() {
         return firstName;
     }
+
+    @JsonProperty("last_name")
     public String getLastName() {
         return lastName;
     }
@@ -65,26 +73,32 @@ public class PlatformUserVariables {
         public PlatformUserVariablesBuilder(String email) {
             this.email = email;
         }
+
         public PlatformUserVariablesBuilder id(String id) {
             this.id = id;
             return this;
         }
+
         public PlatformUserVariablesBuilder name(String name) {
             this.name = name;
             return this;
         }
+
         public PlatformUserVariablesBuilder profilePictureUrl(String profilePictureUrl) {
             this.profilePictureUrl = profilePictureUrl;
             return this;
         }
-        public PlatformUserVariablesBuilder address(Status status) {
+
+        public PlatformUserVariablesBuilder status(Status status) {
             this.status = status;
             return this;
         }
+
         public PlatformUserVariablesBuilder firstName(String firstName) {
             this.firstName = firstName;
             return this;
         }
+
         public PlatformUserVariablesBuilder lastName(String lastName) {
             this.lastName = lastName;
             return this;
