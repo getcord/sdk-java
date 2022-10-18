@@ -13,7 +13,6 @@ Include the package in your `build.gradle`
 
 It is in the `mavenCentral()` repository.
 
-
 ## Documentation
 
-You can find the documentation [on the Cord Developer Documentation web site](https://docs.cord.com/server).
+You can find the documentation [on the Cord Developer Documentation web site](https://docs.cord.com/reference/server-libraries/).
